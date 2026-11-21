@@ -1,0 +1,46 @@
+{
+  "/icons/android.svg": {
+    "width": 38,
+    "height": 22.16
+  },
+  "/icons/apple.svg": {
+    "width": 28.87,
+    "height": 35.47
+  },
+  "/icons/claude.svg": {
+    "width": 31.97,
+    "height": 32.03
+  },
+  "/icons/figma.svg": {
+    "width": 25.37,
+    "height": 38
+  },
+  "/icons/nextjs.svg": {
+    "width": 32,
+    "height": 32
+  },
+  "/icons/openai.svg": {
+    "width": 32,
+    "height": 32
+  },
+  "/icons/postgresql.svg": {
+    "width": 31.52,
+    "height": 32.49
+  },
+  "/icons/react.svg": {
+    "width": 33.73,
+    "height": 30.35
+  },
+  "/icons/slack.svg": {
+    "width": 31.97,
+    "height": 32.03
+  },
+  "/icons/tailwind.svg": {
+    "width": 38,
+    "height": 22.84
+  },
+  "/icons/typescript.svg": {
+    "width": 32,
+    "height": 32
+  }
+}

@@ -1,0 +1,46 @@
+[
+    {
+        "name":  "React",
+        "source":  "https://svgl.app/library/react_dark.svg"
+    },
+    {
+        "name":  "Figma",
+        "source":  "https://svgl.app/library/figma.svg"
+    },
+    {
+        "name":  "Tailwind CSS",
+        "source":  "https://svgl.app/library/tailwindcss.svg"
+    },
+    {
+        "name":  "TypeScript",
+        "source":  "https://svgl.app/library/typescript.svg"
+    },
+    {
+        "name":  "PostgreSQL",
+        "source":  "https://svgl.app/library/postgresql.svg"
+    },
+    {
+        "name":  "Apple",
+        "source":  "https://svgl.app/library/apple_dark.svg"
+    },
+    {
+        "name":  "OpenAI",
+        "source":  "https://svgl.app/library/openai_dark.svg"
+    },
+    {
+        "name":  "Slack",
+        "source":  "https://svgl.app/library/slack.svg"
+    },
+    {
+        "name":  "Android",
+        "source":  "https://svgl.app/library/android-icon.svg"
+    },
+    {
+        "name":  "Next.js",
+        "source":  "https://svgl.app/library/nextjs_icon_dark.svg"
+    },
+    {
+        "name":  "Claude AI",
+        "source":  "https://svgl.app/library/claude-ai-icon.svg"
+    }
+]

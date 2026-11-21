@@ -1,0 +1,24 @@
+---
+import { locale, translator, localize } from '../../i18n';
+const lang = locale(Astro.url);
+const t = translator(lang);
+import CaseStudyShowcase from '../case-studies/CaseStudyShowcase';
+import { caseStudies as caseStudiesSource, caseStudySettings as caseStudySettingsSource } from '../../data/case-studies';
+const caseStudies = localize(caseStudiesSource, lang);
+const caseStudySettings = localize(caseStudySettingsSource, lang);
+---
+<section id="work" aria-labelledby="case-studies-title">
+  <div class="case-heading-pin">
+    <div class="case-heading"><h2 id="case-studies-title">{caseStudySettings.heading}</h2></div>
+  </div>
+  <CaseStudyShowcase lang={lang} client:visible projects={caseStudies} colors={caseStudySettings.colors} cta={caseStudySettings.cta} />
+</section>
+<style>
+  section { scroll-margin-top:50px; border-bottom:1px solid var(--line); }
+  .case-heading-pin { position:sticky; top:50px; z-index:2; pointer-events:none; }
+  .case-heading { padding:36px 30px; background:#000; border-bottom:1px solid var(--line); pointer-events:auto; }
+  h2 { max-width:900px; margin:0; font-size:48px; font-weight:400; letter-spacing:-.025em; line-height:1.18; }
+  @media(max-width:1000px) { h2 { font-size:38px; } }
+  @media(max-width:800px), (prefers-reduced-motion:reduce) { .case-heading-pin { position:static; padding-bottom:0; margin-bottom:0; } }
+  @media(max-width:600px) { .case-heading { padding:32px 24px; } h2 { font-size:30px; } }
+</style>

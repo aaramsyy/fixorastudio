@@ -1,0 +1,23 @@
+# Fixora Studio
+
+> Fixora Studio is a software development studio serving businesses worldwide, with website content in English and Indonesian.
+
+Services include custom SaaS and web applications, mobile apps for iOS and Android, AI workflow automation, internal dashboards, and marketing websites. Project scope and delivery timelines are agreed directly with the team.
+
+Contact: hitmeup@fixorastudio.com. Canonical website: https://fixorastudio.com.
+
+## Website
+
+- [English homepage](https://fixorastudio.com/): Studio introduction, services, and contact information.
+- [Halaman Bahasa Indonesia](https://fixorastudio.com/id/): Layanan pengembangan software dan informasi kontak dalam Bahasa Indonesia.
+
+## Services and contact
+
+- [Services](https://fixorastudio.com/#solutions): Mobile apps, dashboards, AI automation, websites, and SaaS development.
+- [Layanan](https://fixorastudio.com/id/#solutions): Pengembangan aplikasi, dashboard, otomasi AI, website, dan SaaS.
+- [Contact the team](https://fixorastudio.com/#start): Discuss project requirements with Fixora Studio.
+- [Diskusikan proyek](https://fixorastudio.com/id/#start): Hubungi tim untuk membahas kebutuhan dan ruang lingkup proyek.
+
+## Optional
+
+- [Sitemap](https://fixorastudio.com/sitemap-index.xml): Index of the site's XML sitemaps.

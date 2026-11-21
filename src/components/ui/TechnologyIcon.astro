@@ -1,0 +1,14 @@
+---
+import type { Technology } from '../../data/services';
+import iconSizes from '../../data/icon-sizes.json';
+interface Props extends Technology {}
+const { name, icon } = Astro.props;
+const size = (iconSizes as Record<string, { width: number; height: number }>)[icon] ?? { width: 32, height: 32 };
+---
+<li class="technology" title={name}>
+  <img src={icon} alt={name} width={size.width} height={size.height} style={{ width: `${size.width}px`, height: `${size.height}px` }} loading="lazy" decoding="async" />
+</li>
+<style>
+  .technology { flex:0 0 52px; width:52px; height:52px; display:grid; place-items:center; border:1px solid #1c1c1c; background:linear-gradient(#121212,#030303 80%); }
+  img { display:block; object-fit:contain; }
+</style>

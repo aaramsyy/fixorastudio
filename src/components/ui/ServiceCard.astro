@@ -1,0 +1,24 @@
+---
+import { locale } from '../../i18n';
+import type { Service } from '../../data/services';
+import TechnologyIcon from './TechnologyIcon.astro';
+interface Props { service: Service; }
+const { service } = Astro.props;
+---
+<article class="service-card">
+  <p class="category">{service.category}</p>
+  <h3>{service.title}</h3>
+  <p class="description">{service.description}</p>
+  <ul aria-label={locale(Astro.url) === 'id' ? `Teknologi ${service.category}` : `${service.category} technologies`}>
+    {service.technologies.map(technology => <TechnologyIcon {...technology} />)}
+  </ul>
+</article>
+<style>
+  .service-card { min-width:0; height:372px; padding:36px 40px 40px; display:flex; flex-direction:column; border-right:1px solid var(--line); }
+  .category { margin:0 0 18px; color:var(--accent); font-size:14px; line-height:1.4; font-weight:400; }
+  h3 { font-size:16px; line-height:1.45; font-weight:600; margin:0 0 5px; letter-spacing:-.025em; }
+  .description { font-size:16px; line-height:1.4; color:#929292; max-width:345px; margin:0; }
+  ul { display:flex; gap:20px; list-style:none; padding:0; margin:auto 0 0; }
+  @media(max-width:1000px) { .service-card { padding:32px 28px; } }
+  @media(max-width:600px) { .service-card { padding:30px 24px; height:350px; } }
+</style>

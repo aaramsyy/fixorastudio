@@ -1,0 +1,5 @@
+---
+const {href,label}=Astro.props;
+---
+<a href={href}><span aria-hidden="true"></span>{label}</a>
+<style>a{display:inline-flex;align-items:center;gap:26px;padding:0 16px;min-width:181px;height:48px;border:1px solid #1c1c1c;background:#090909;font:12px var(--pixel);text-transform:uppercase}span{width:8px;height:8px;background:white}a:hover{background:#181818}</style>

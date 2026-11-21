@@ -1,0 +1,83 @@
+---
+import { locale, translator, localize } from '../../i18n';
+const lang = locale(Astro.url);
+const t = translator(lang);
+import { services as servicesSource } from '../../data/services';
+import ServiceCard from '../ui/ServiceCard.astro';
+interface Props { id?: string; }
+const { id = 'solutions' } = Astro.props;
+const services = localize(servicesSource, lang);
+---
+<section id={id} aria-labelledby={`${id}-title`}>
+  <service-carousel>
+    <div class="section-heading">
+      <h2 id={`${id}-title`}>{t('Software development services for modern teams')}</h2>
+      <div class="controls" aria-label={t('Browse services')}>
+        <button type="button" data-previous aria-label={t('Previous services')} aria-controls={`${id}-track`} disabled>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m14 5-6 7 6 7" stroke="currentColor" stroke-width="2"/></svg>
+        </button>
+        <button type="button" data-next aria-label={t('Next services')} aria-controls={`${id}-track`}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m10 5 6 7-6 7" stroke="currentColor" stroke-width="2"/></svg>
+        </button>
+      </div>
+    </div>
+    <div id={`${id}-track`} class="track" tabindex="0" role="region" aria-label={t('Services, scroll horizontally to explore')}>
+      {services.map(service => <ServiceCard service={service} />)}
+    </div>
+  </service-carousel>
+</section>
+<script>
+  class ServiceCarousel extends HTMLElement {
+    private cleanup?: () => void;
+    connectedCallback() {
+      this.cleanup?.();
+      const track = this.querySelector<HTMLElement>('.track')!;
+      const previous = this.querySelector<HTMLButtonElement>('[data-previous]')!;
+      const next = this.querySelector<HTMLButtonElement>('[data-next]')!;
+      const controller = new AbortController();
+      const update = () => {
+        previous.disabled = track.scrollLeft < 2;
+        next.disabled = track.scrollLeft >= track.scrollWidth - track.clientWidth - 2;
+      };
+      const move = (direction: number) => {
+        const card = track.firstElementChild as HTMLElement;
+        const width = card.getBoundingClientRect().width;
+        const visible = Math.round(track.clientWidth / width);
+        const step = Math.max(1, visible - 1);
+        const index = Math.round(track.scrollLeft / width);
+        track.scrollTo({ left: (index + direction * step) * width,
+          behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+      };
+      previous.addEventListener('click', () => move(-1), { signal: controller.signal });
+      next.addEventListener('click', () => move(1), { signal: controller.signal });
+      track.addEventListener('scroll', update, { passive:true, signal:controller.signal });
+      track.addEventListener('keydown', event => {
+        if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
+          event.preventDefault(); move(event.key === 'ArrowRight' ? 1 : -1);
+        }
+      }, { signal:controller.signal });
+      const resize = new ResizeObserver(update);
+      resize.observe(track);
+      update();
+      this.cleanup = () => { controller.abort(); resize.disconnect(); };
+    }
+    disconnectedCallback() { this.cleanup?.(); }
+  }
+  if (!customElements.get('service-carousel')) customElements.define('service-carousel', ServiceCarousel);
+</script>
+<style>
+  section { scroll-margin-top:50px; border-bottom:1px solid var(--line); }
+  service-carousel { display:block; }
+  .section-heading { min-height:218px; padding:52px 30px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
+  h2 { font-size:44px; font-weight:400; letter-spacing:-.025em; line-height:1.18; margin:0; }
+  .controls { display:flex; gap:8px; flex-shrink:0; }
+  button { width:44px; height:44px; display:grid; place-items:center; border:1px solid var(--line); background:#000; color:#fff; cursor:pointer; transition:background 150ms ease; }
+  button:disabled { color:#383838; cursor:default; }
+  button:hover:not(:disabled) { background:#141414; }
+  .track { display:grid; grid-auto-flow:column; grid-auto-columns:calc(100% / 3); overflow-x:auto; overscroll-behavior-x:contain; scroll-snap-type:x mandatory; scrollbar-width:none; border-top:1px solid var(--line); }
+  .track::-webkit-scrollbar { display:none; }
+  .track :global(.service-card) { scroll-snap-align:start; }
+  .track:focus-visible { outline-offset:-3px; }
+  @media(max-width:1000px) { .track { grid-auto-columns:50%; } h2 { font-size:38px; } }
+  @media(max-width:600px) { .track { grid-auto-columns:100%; } .section-heading { min-height:190px; padding:32px 24px; align-items:flex-start; flex-direction:column; gap:24px; } h2 { font-size:30px; } .controls { align-self:flex-end; } }
+</style>

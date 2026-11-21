@@ -1,0 +1,41 @@
+---
+import LanguageSwitcher from './LanguageSwitcher';
+import { locale, translator, localize } from '../i18n';
+const lang = locale(Astro.url);
+const t = translator(lang);
+const links = [['Solutions','#solutions'],['Case study','#work'],['Start','#start'],['About','#about']];
+---
+<header data-site-navbar><div class="bar"><a class="brand" href="#main">Fixora Studio.</a><nav aria-label={t('Primary navigation')}>{links.map(([label,href]) => <a href={href}>{t(label)}</a>)}</nav><div class="language-slot"><LanguageSwitcher lang={lang} /></div></div></header>
+<script>
+const header = document.querySelector<HTMLElement>('[data-site-navbar]');
+const brand = header?.querySelector<HTMLElement>('.brand');
+const wordmark = document.querySelector<HTMLElement>('.hero .wordmark');
+const hero = document.querySelector<HTMLElement>('.hero');
+const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+const desktop = matchMedia('(min-width:701px)');
+let frame = 0;
+let distance = 180;
+const update = () => {
+  frame = 0;
+  const progress = Math.min(1, Math.max(0, window.scrollY / distance));
+  const amount = reduced.matches ? Number(progress >= 0.5) : progress;
+  header?.classList.toggle('scrolled', progress > 0.15);
+  if (wordmark) wordmark.style.opacity = desktop.matches ? String(1 - amount) : '1';
+  if (brand) {
+    brand.style.opacity = String(amount);
+    brand.style.visibility = amount > 0 ? 'visible' : 'hidden';
+  }
+};
+const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
+const measure = () => { distance = Math.max(120, (hero?.offsetHeight ?? 360) * 0.55); schedule(); };
+const observer = new ResizeObserver(measure);
+if (hero) observer.observe(hero);
+measure();
+window.addEventListener('scroll', schedule, { passive:true });
+window.addEventListener('pageshow', measure);
+reduced.addEventListener('change', schedule);
+desktop.addEventListener('change', measure);
+</script>
+<style>
+header{position:fixed;inset:0 0 auto;z-index:50;background:#000;padding-inline:24px}.bar{max-width:1440px;margin:auto;height:50px;border:1px solid var(--line);border-top:0;position:relative}.brand{position:absolute;inset:0 auto 0 0;width:180px;display:flex;align-items:center;padding:0 16px;font:20px/1 var(--pixel);white-space:nowrap;color:#999;border-right:1px solid var(--line);opacity:0;visibility:hidden;transition:opacity 180ms ease}nav{display:flex;align-items:center;gap:28px;height:100%;position:absolute;left:0;padding-left:26px;transform:translateX(calc(min(1440px,100vw - 48px)*.49));transition:transform 250ms cubic-bezier(.23,1,.32,1)}nav a{font:14px var(--pixel);text-transform:uppercase;color:#929292;white-space:nowrap;padding-block:14px}nav a:hover{color:white}.scrolled nav{transform:translateX(180px)}.scrolled .brand{opacity:1;visibility:visible}@media(max-width:700px){header{padding-inline:12px}nav,.scrolled nav{transform:none;width:100%;justify-content:space-around;gap:8px;padding:0 8px}nav a{font-size:12px}.brand,.scrolled .brand{display:none}}@media(prefers-reduced-motion:reduce){nav,.brand{transition:none}}
+.language-slot{position:absolute;right:8px;top:0;height:100%;display:flex;align-items:center}nav{max-width:calc(51% - 100px);gap:clamp(10px,2vw,28px)}@media(max-width:1100px){nav,.scrolled nav{transform:translateX(180px);max-width:calc(100% - 280px)}}@media(max-width:700px){nav,.scrolled nav{transform:none;width:calc(100% - 85px);max-width:none;gap:6px;padding-inline:6px}nav a{font-size:10px}.language-slot{right:4px}}</style>

@@ -1,0 +1,47 @@
+---
+import 'lenis/dist/lenis.css';
+---
+
+<smooth-scroll-controller></smooth-scroll-controller>
+
+<script>
+  import Lenis from 'lenis';
+
+  class SmoothScrollController extends HTMLElement {
+    private lenis?: Lenis;
+    private cleanup?: () => void;
+
+    connectedCallback() {
+      const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const configure = () => {
+        this.lenis?.destroy();
+        this.lenis = undefined;
+        if (preference.matches) return;
+
+        this.lenis = new Lenis({
+          autoRaf: true,
+          lerp: 0.1,
+          smoothWheel: true,
+          syncTouch: false,
+          anchors: { offset: -50 },
+          // Horizontal gestures belong to the native services carousel.
+          virtualScroll: ({ deltaX, deltaY }) => Math.abs(deltaY) >= Math.abs(deltaX),
+        });
+      };
+
+      configure();
+      preference.addEventListener('change', configure);
+      this.cleanup = () => {
+        preference.removeEventListener('change', configure);
+        this.lenis?.destroy();
+        this.lenis = undefined;
+      };
+    }
+
+    disconnectedCallback() { this.cleanup?.(); }
+  }
+
+  if (!customElements.get('smooth-scroll-controller')) {
+    customElements.define('smooth-scroll-controller', SmoothScrollController);
+  }
+</script>
