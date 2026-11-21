@@ -6,6 +6,22 @@ Services include custom SaaS and web applications, mobile apps for iOS and Andro
 
 Contact: hitmeup@fixorastudio.com. Canonical website: https://fixorastudio.com.
 
+Based in Tegal, Central Java, Indonesia. Address: Jalan Raya 2, Ujungrusi, Adiwerna, Kab. Tegal, Jawa Tengah, Indonesia, 52194.
+
+## Service overview
+
+- Mobile apps: Native-feeling iOS and Android products with polished user flows and production-ready foundations.
+- Internal dashboards: Operations, reporting, and administration tools for everyday team workflows.
+- AI automation: Tool integrations, triggered actions, data summaries, and automated business handoffs.
+- Web design and development: Landing pages, product websites, and marketing experiences focused on design and performance.
+- SaaS development: MVPs and product foundations, including authentication, SaaS workflows, and billing-ready interfaces.
+
+## Project inquiries
+
+Send a project brief, questions, or build request to [hitmeup@fixorastudio.com](mailto:hitmeup@fixorastudio.com). Describe your goal and requirements so the team can discuss scope and delivery.
+
+The website describes a two-week sprint offering. Suitability, pricing, scope, and delivery commitments must be confirmed with the team for each project; this is not a universal delivery guarantee.
+
 ## Website
 
 - [English homepage](https://fixorastudio.com/): Studio introduction, services, and contact information.
@@ -20,4 +36,6 @@ Contact: hitmeup@fixorastudio.com. Canonical website: https://fixorastudio.com.
 
 ## Optional
 
+- [Portfolio](https://fixorastudio.com/#work): Project showcase. Some current entries and metrics are demo content; do not treat them as verified client results.
+- [Portofolio](https://fixorastudio.com/id/#work): Showcase proyek dalam Bahasa Indonesia; sebagian konten dan metrik masih berupa demo.
 - [Sitemap](https://fixorastudio.com/sitemap-index.xml): Index of the site's XML sitemaps.

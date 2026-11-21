@@ -7,27 +7,36 @@ import { services as servicesSource } from '../data/services';
 const year = new Date().getFullYear();
 const services = localize(servicesSource, lang);
 const footer = localize(footerSource, lang);
+const home = lang === 'id' ? '/id/' : '/';
+const isHome = Astro.url.pathname === home;
 ---
 <footer id="about" aria-label={t('Site footer')}>
   <div class="footer-grid">
     <div class="brand-column">
-      <a class="wordmark" href="#main" aria-label={t('Fixora Studio, back to top')}>Fixora Studio.</a>
+      <a class="wordmark" href={isHome ? '#main' : home} aria-label={t('Fixora Studio, back to top')}>Fixora Studio.</a>
       <p>{footer.description}</p>
     </div>
     <nav aria-labelledby="footer-explore">
       <h2 id="footer-explore">{t('Explore')}</h2>
-      <ul>{footer.explore.map(link => <li><a href={link.href}>{link.label}</a></li>)}</ul>
+      <ul>{footer.explore.map(link => <li><a href={isHome ? link.href : `${home}${link.href}`}>{link.label}</a></li>)}</ul>
     </nav>
     <nav aria-labelledby="footer-solutions">
       <h2 id="footer-solutions">{t('Solutions')}</h2>
-      <ul>{services.map(service => <li><a href="#solutions">{service.category}</a></li>)}</ul>
+      <ul>{services.map(service => <li><a href={isHome ? '#solutions' : `${home}#solutions`}>{service.category}</a></li>)}</ul>
+      {lang === 'id' && <ul class="service-links">
+        <li><a href="/id/jasa-pembuatan-website-tegal/">Jasa website Tegal</a></li>
+        <li><a href="/id/jasa-pembuatan-aplikasi/">Jasa pembuatan aplikasi</a></li>
+      </ul>}
     </nav>
     <div class="address-column">
       <h2>{t('Address')}</h2>
       <address>{footer.address}</address>
     </div>
   </div>
-  <div class="copyright">© {year} {footer.name}</div>
+  <div class="copyright">
+    <span>© {year} {footer.name}</span>
+    <a class="llms-link" href="/llms.txt">llms.txt</a>
+  </div>
   <div class="footer-signature" aria-hidden="true">Fixora Studio.</div>
 </footer>
 <style>
@@ -39,10 +48,14 @@ const footer = localize(footerSource, lang);
   p,address { margin:22px 0 0; max-width:310px; color:#999; font-size:14px; line-height:1.6; font-style:normal; }
   h2 { margin:0 0 18px; color:#999; font:12px/1.5 var(--pixel); text-transform:uppercase; }
   ul { display:grid; gap:8px; list-style:none; margin:0; padding:0; }
+  .service-links { margin-top:14px; padding-top:14px; border-top:1px solid var(--line); }
   li a { display:inline-block; padding-block:6px; font-size:14px; line-height:1.5; color:#999; }
   a:hover { color:var(--accent); }
   address { margin:0; }
-  .copyright { padding:26px 30px; color:#888; font-size:12px; line-height:1.5; border-bottom:1px solid var(--line); }
+  .copyright { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:26px 30px; color:#888; font-size:12px; line-height:1.5; border-bottom:1px solid var(--line); }
+  .llms-link { flex-shrink:0; display:inline-flex; align-items:center; min-height:24px; text-underline-offset:4px; }
+  .llms-link:hover { text-decoration:underline; }
+  .llms-link:focus-visible { outline:2px solid var(--accent); outline-offset:5px; }
   .footer-signature { overflow:hidden; height:calc(28px + .65em); padding:18px 20px 0; text-align:center; white-space:nowrap; color:#222; font:clamp(40px,12.5vw,180px)/1.15 var(--pixel); letter-spacing:-.055em; background-image:radial-gradient(#262626 .65px,transparent .65px); background-size:16px 16px; }
   @media(max-width:1000px) {
     .footer-grid { grid-template-columns:1fr 1fr; }
