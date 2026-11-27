@@ -9,13 +9,13 @@ const { title, description, email } = Astro.props;
 ---
 <section class="cta-banner" aria-label={t("Let's build together")}>
   <div class="terminal-background" aria-hidden="true">
-    <FaultyTerminal client:visible tint={palette.accent} mouseReact={false} />
+    <FaultyTerminal client:media="(min-width: 1024px) and (hover: hover) and (prefers-reduced-motion: no-preference)" tint={palette.accent} mouseReact={false} />
   </div>
   <div class="cta-content">
     <h2>{title}</h2>
     <p>{description}</p>
-    <a href={`mailto:${email}?subject=${encodeURIComponent(`${t('Book a call')} - Fixora Studio`)}`}>
-      <span class="square" aria-hidden="true"></span>{t('Book a call')}<span aria-hidden="true">↗</span>
+    <a href={`mailto:${email}?subject=${encodeURIComponent(`${t('Email your brief')} - Fixora Studio`)}`}>
+      <span class="square" aria-hidden="true"></span>{t('Email your brief')}<span aria-hidden="true">↗</span>
     </a>
   </div>
 </section>

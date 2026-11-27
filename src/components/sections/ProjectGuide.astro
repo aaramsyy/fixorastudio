@@ -1,0 +1,35 @@
+---
+import { locale } from '../../i18n';
+const id = locale(Astro.url) === 'id';
+const steps = id ? [
+ ['Ceritakan masalahnya', 'Jelaskan siapa pengguna produk, pekerjaan yang ingin dipermudah, dan kendala sistem saat ini. Contoh alur kerja membantu memperjelas kebutuhan.'],
+ ['Tentukan prioritas', 'Bahas fitur wajib, integrasi, target waktu, dan anggaran. Ruang lingkup versi awal menjadi dasar penawaran; fitur tambahan dibahas terpisah.'],
+ ['Sepakati hasil pengerjaan', 'Pastikan kebutuhan deployment, dokumentasi, akses kode, dan dukungan setelah peluncuran tercantum dalam ruang lingkup sebelum pekerjaan dimulai.'],
+] : [
+ ['Describe the problem', 'Tell us who will use the product, which tasks need to become easier, and where your current system gets in the way. A sample workflow helps clarify the requirements.'],
+ ['Set the priorities', 'Discuss essential features, integrations, timing, and budget. The first version?s scope informs the quote; additional features are discussed separately.'],
+ ['Agree on the deliverables', 'Include deployment, documentation, code access, and post-launch support requirements in the agreed scope before work begins.'],
+];
+const questions = id ? [
+ ['Berapa biaya pembuatan software?', 'Biaya bergantung pada jumlah fitur, kompleksitas integrasi, desain, dan target waktu. Kirim kebutuhan serta kisaran anggaran agar pembahasan berfokus pada solusi yang sesuai.'],
+ ['Apa yang perlu disiapkan sebelum menghubungi?', 'Siapkan masalah utama, pengguna yang dituju, fitur wajib, contoh produk jika ada, dan target peluncuran. Ide awal juga bisa menjadi titik mulai diskusi.'],
+ ['Apakah semua proyek selesai dalam dua minggu?', 'Tidak. Sprint dua minggu adalah cara membagi pekerjaan, bukan jaminan durasi seluruh proyek. Estimasi dan hasil setiap tahap perlu disepakati berdasarkan ruang lingkup.'],
+ ['Bagaimana dengan pemeliharaan setelah rilis?', 'Sampaikan kebutuhan perbaikan, pembaruan, hosting, dan dukungan sejak awal. Cakupan serta biaya pemeliharaan perlu dicantumkan dalam kesepakatan proyek.'],
+] : [
+ ['How much does custom software cost?', 'Cost depends on features, integrations, design, and timing. Share your requirements and a budget range so the discussion can focus on a suitable scope.'],
+ ['What should I prepare before contacting you?', 'Bring the main problem, intended users, essential features, any reference products, and your target launch date. An early idea is also a useful starting point.'],
+ ['Does every project take two weeks?', 'No. A two-week sprint divides the work into stages; it is not a promise for the full project duration. Estimates and deliverables depend on the agreed scope.'],
+ ['What happens after launch?', 'Discuss fixes, updates, hosting, and support requirements early. Maintenance coverage and costs should be included in the project agreement.'],
+];
+---
+<section class="project-guide" aria-labelledby="guide-title">
+ <h2 id="guide-title">{id ? 'Dari kebutuhan ke ruang lingkup yang jelas' : 'From a business need to a clear project scope'}</h2>
+ <ol>{steps.map(([title,body]) => <li><h3>{title}</h3><p>{body}</p></li>)}</ol>
+ {id && <p class="service-context">Pelajari <a href="/id/jasa-pembuatan-website-tegal/">layanan website bisnis di Tegal</a> atau <a href="/id/jasa-pembuatan-aplikasi/">pengembangan aplikasi sesuai kebutuhan</a> sebelum menyiapkan brief.</p>}
+ <h2>{id ? 'Sebelum memulai proyek' : 'Before starting a project'}</h2>
+ <div class="questions">{questions.map(([q,a]) => <details><summary>{q}</summary><p>{a}</p></details>)}</div>
+ <a class="brief-link" href="https://wa.me/6281959361647">{id ? 'Diskusikan proyek melalui WhatsApp' : 'Discuss your project on WhatsApp'} <span aria-hidden="true">?</span></a>
+</section>
+<style>
+.project-guide{padding:56px 30px;border-bottom:1px solid var(--line)}h2{font-size:clamp(28px,3.5vw,44px);font-weight:400;line-height:1.2;letter-spacing:-.025em;max-width:850px;margin:0 0 32px}ol{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;padding:0;list-style-position:inside;margin:0 0 40px}li::marker{color:var(--accent)}h3{font-size:18px;font-weight:400;margin:12px 0}p{color:#aaa;font-size:16px;line-height:1.65;max-width:75ch}a{color:var(--accent);text-decoration:underline;text-underline-offset:4px}.service-context{margin-bottom:48px}.questions{margin-bottom:24px}details{border-top:1px solid #333;padding:4px 0}details:last-child{border-bottom:1px solid #333}summary{cursor:pointer;padding:16px 8px;font-size:17px;line-height:1.5}details p{padding:0 8px 16px;margin:0}.brief-link{display:inline-flex;align-items:center;gap:12px;min-height:48px;line-height:1.5;padding-block:8px}@media(max-width:800px){ol{grid-template-columns:1fr;gap:16px}}@media(max-width:600px){.project-guide{padding:40px 24px}}
+</style>

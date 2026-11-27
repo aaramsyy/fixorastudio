@@ -3,7 +3,7 @@ import '../styles/global.css';
 import '@fontsource/dm-sans/latin-400.css';
 import '@fontsource/dotgothic16/latin-400.css';
 import Navbar from '../components/Navbar.astro';
-import SmoothScroll from '../components/SmoothScroll.astro';
+
 import Footer from '../components/Footer.astro';
 import { locale } from '../i18n';
 import { palette } from '../data/theme';
@@ -30,7 +30,7 @@ const googleVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
 const structuredData = {
   '@context': 'https://schema.org',
   '@graph': [
-    { '@type': 'Organization', '@id': `${siteUrl}#organization`, name: 'Fixora Studio', url: siteUrl.href, email: 'hitmeup@fixorastudio.com', sameAs: ['https://instagram.com/fixoraastudio', 'https://id.linkedin.com/company/fixorastudio'], description },
+    { '@type': 'ProfessionalService', '@id': `${siteUrl}#organization`, name: 'Fixora Studio', url: siteUrl.href, email: 'hitmeup@fixorastudio.com', telephone: '+6281959361647', address: { '@type': 'PostalAddress', streetAddress: 'Jalan Raya 2, Ujungrusi, Adiwerna', addressLocality: 'Kabupaten Tegal', addressRegion: 'Jawa Tengah', postalCode: '52194', addressCountry: 'ID' }, sameAs: ['https://instagram.com/fixoraastudio', 'https://id.linkedin.com/company/fixorastudio'], description },
     { '@type': 'WebSite', '@id': `${siteUrl}#website`, url: siteUrl.href, name: 'Fixora Studio', publisher: { '@id': `${siteUrl}#organization` }, inLanguage: lang },
     { '@type': 'WebPage', '@id': `${canonicalUrl}#webpage`, url: canonicalUrl.href, name: title, description, inLanguage: lang, isPartOf: { '@id': `${siteUrl}#website` }, about: { '@id': `${siteUrl}#organization` } },
   ],
@@ -42,21 +42,6 @@ const structuredData = {
 <html lang={lang}>
   <head>
     <meta charset="utf-8" />
-    <script is:inline>
-      // Negotiate only once. Subsequent explicit URL changes always win.
-      // If storage is unavailable, keep the requested URL instead of redirecting repeatedly.
-      (() => {
-        try {
-          const key = 'fixora-language-visited';
-          const firstVisit = localStorage.getItem(key) === null;
-          localStorage.setItem(key, '1');
-          const preferred = navigator.languages?.[0] || navigator.language || 'en';
-          if (firstVisit && location.pathname === '/' && /^id(?:-|$)/i.test(preferred)) {
-            location.replace('/id/' + location.search + location.hash);
-          }
-        } catch { /* Explicit URLs remain usable without browser storage. */ }
-      })();
-    </script>
     {gtmId && <script is:inline define:vars={{ gtmId }}>
       (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer',gtmId);
     </script>}
@@ -93,6 +78,6 @@ const structuredData = {
   </head>
   <body>
     {gtmId && <noscript><iframe src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`} height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>}
-    <SmoothScroll/><Navbar/><div class="frame"><main id="main"><slot/></main><Footer/></div>
+    <a class="skip-link" href="#main">{lang === 'id' ? 'Lewati ke konten utama' : 'Skip to main content'}</a><Navbar/><div class="frame"><main id="main" tabindex="-1"><slot/></main><Footer/></div>
   </body>
 </html>

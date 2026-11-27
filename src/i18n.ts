@@ -1,6 +1,7 @@
 export type Locale = 'en' | 'id';
 export const locale = (url: URL): Locale => /^\/id(?:\/|$)/.test(url.pathname) ? 'id' : 'en';
 const id: Record<string, string> = {
+  'Email your brief': 'Kirim brief via email',
   'Solutions': 'Layanan', 'Case study': 'Studi kasus', 'Start': 'Mulai', 'About': 'Tentang',
   'Primary navigation': 'Navigasi utama', 'View work': 'Lihat proyek',
   'Fast software for': 'Dari ide, jadi software', 'teams that move now.': 'yang siap dipakai.',
