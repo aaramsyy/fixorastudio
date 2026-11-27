@@ -1,3 +1,5 @@
+> Superseded by design restoration: original PixelBlast, FaultyTerminal, animated case studies and Lenis restored; added project guide/FAQ removed. Performance numbers below describe the prior optimization build, not the restored version.
+
 # SEO and usability verification ? 2026-11-27
 
 ## Changes

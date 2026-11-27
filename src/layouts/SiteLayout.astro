@@ -3,6 +3,7 @@ import '../styles/global.css';
 import '@fontsource/dm-sans/latin-400.css';
 import '@fontsource/dotgothic16/latin-400.css';
 import Navbar from '../components/Navbar.astro';
+import SmoothScroll from '../components/SmoothScroll.astro';
 
 import Footer from '../components/Footer.astro';
 import { locale } from '../i18n';
@@ -78,6 +79,6 @@ const structuredData = {
   </head>
   <body>
     {gtmId && <noscript><iframe src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`} height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>}
-    <a class="skip-link" href="#main">{lang === 'id' ? 'Lewati ke konten utama' : 'Skip to main content'}</a><Navbar/><div class="frame"><main id="main" tabindex="-1"><slot/></main><Footer/></div>
+    <a class="skip-link" href="#main">{lang === 'id' ? 'Lewati ke konten utama' : 'Skip to main content'}</a><SmoothScroll/><Navbar/><div class="frame"><main id="main" tabindex="-1"><slot/></main><Footer/></div>
   </body>
 </html>

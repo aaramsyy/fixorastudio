@@ -9,7 +9,7 @@ const { title, description, email } = Astro.props;
 ---
 <section class="cta-banner" aria-label={t("Let's build together")}>
   <div class="terminal-background" aria-hidden="true">
-    <FaultyTerminal client:media="(min-width: 1024px) and (hover: hover) and (prefers-reduced-motion: no-preference)" tint={palette.accent} mouseReact={false} />
+    <FaultyTerminal client:visible tint={palette.accent} mouseReact={false} />
   </div>
   <div class="cta-content">
     <h2>{title}</h2>

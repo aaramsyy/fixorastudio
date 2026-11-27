@@ -4,5 +4,5 @@ const lang = locale(Astro.url);
 const t = translator(lang);
 import PixelBlast from '../PixelBlast';
 ---
-<section aria-label={t('Interactive pixel illustration')}><div class="art" aria-hidden="true"><PixelBlast client:media="(min-width: 1024px) and (hover: hover) and (prefers-reduced-motion: no-preference)" /></div><div class="divider" aria-hidden="true"></div></section>
-<style>.art{background:radial-gradient(ellipse at 60% 50%,var(--accent-muted),transparent 65%),radial-gradient(var(--accent) 1px,transparent 1px);background-size:auto,12px 12px;position:relative;height:468px;overflow:hidden;border-block:1px solid var(--line)}.art :global(astro-island){display:block;height:100%}.divider{height:60px;border-bottom:1px solid var(--line);background:repeating-linear-gradient(122deg,#0c0c0c 0 8px,#000 8px 18px)}@media(max-width:700px){.art{height:340px}}</style>
+<section aria-label={t('Interactive pixel illustration')}><div class="art" aria-hidden="true"><PixelBlast client:visible /></div><div class="divider" aria-hidden="true"></div></section>
+<style>.art{position:relative;height:468px;overflow:hidden;border-block:1px solid var(--line)}.art :global(astro-island){display:block;height:100%}.divider{height:60px;border-bottom:1px solid var(--line);background:repeating-linear-gradient(122deg,#0c0c0c 0 8px,#000 8px 18px)}@media(max-width:700px){.art{height:340px}}</style>
