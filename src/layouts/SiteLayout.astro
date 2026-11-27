@@ -30,7 +30,7 @@ const googleVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
 const structuredData = {
   '@context': 'https://schema.org',
   '@graph': [
-    { '@type': 'Organization', '@id': `${siteUrl}#organization`, name: 'Fixora Studio', url: siteUrl.href, email: 'hitmeup@fixorastudio.com', sameAs: ['https://instagram.com/ixoraa.studio', 'https://id.linkedin.com/company/fixorastudio'], description },
+    { '@type': 'Organization', '@id': `${siteUrl}#organization`, name: 'Fixora Studio', url: siteUrl.href, email: 'hitmeup@fixorastudio.com', sameAs: ['https://instagram.com/fixoraastudio', 'https://id.linkedin.com/company/fixorastudio'], description },
     { '@type': 'WebSite', '@id': `${siteUrl}#website`, url: siteUrl.href, name: 'Fixora Studio', publisher: { '@id': `${siteUrl}#organization` }, inLanguage: lang },
     { '@type': 'WebPage', '@id': `${canonicalUrl}#webpage`, url: canonicalUrl.href, name: title, description, inLanguage: lang, isPartOf: { '@id': `${siteUrl}#website` }, about: { '@id': `${siteUrl}#organization` } },
   ],
