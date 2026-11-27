@@ -31,7 +31,7 @@ const googleVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
 const structuredData = {
   '@context': 'https://schema.org',
   '@graph': [
-    { '@type': 'ProfessionalService', '@id': `${siteUrl}#organization`, name: 'Fixora Studio', url: siteUrl.href, email: 'hitmeup@fixorastudio.com', telephone: '+6281959361647', address: { '@type': 'PostalAddress', streetAddress: 'Jalan Raya 2, Ujungrusi, Adiwerna', addressLocality: 'Kabupaten Tegal', addressRegion: 'Jawa Tengah', postalCode: '52194', addressCountry: 'ID' }, sameAs: ['https://instagram.com/fixoraastudio', 'https://id.linkedin.com/company/fixorastudio'], description },
+    { '@type': 'ProfessionalService', '@id': `${siteUrl}#organization`, name: 'Fixora Studio', url: siteUrl.href, email: 'hitmeup@fixorastudio.com', address: { '@type': 'PostalAddress', streetAddress: 'Jalan Raya 2, Ujungrusi, Adiwerna', addressLocality: 'Kabupaten Tegal', addressRegion: 'Jawa Tengah', postalCode: '52194', addressCountry: 'ID' }, sameAs: ['https://instagram.com/fixoraastudio', 'https://id.linkedin.com/company/fixorastudio'], description },
     { '@type': 'WebSite', '@id': `${siteUrl}#website`, url: siteUrl.href, name: 'Fixora Studio', publisher: { '@id': `${siteUrl}#organization` }, inLanguage: lang },
     { '@type': 'WebPage', '@id': `${canonicalUrl}#webpage`, url: canonicalUrl.href, name: title, description, inLanguage: lang, isPartOf: { '@id': `${siteUrl}#website` }, about: { '@id': `${siteUrl}#organization` } },
   ],
