@@ -30,7 +30,7 @@ const googleVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
 const structuredData = {
   '@context': 'https://schema.org',
   '@graph': [
-    { '@type': 'Organization', '@id': `${siteUrl}#organization`, name: 'Fixora Studio', url: siteUrl.href, email: 'hitmeup@fixorastudio.com', description },
+    { '@type': 'Organization', '@id': `${siteUrl}#organization`, name: 'Fixora Studio', url: siteUrl.href, email: 'hitmeup@fixorastudio.com', sameAs: ['https://instagram.com/ixoraa.studio', 'https://id.linkedin.com/company/fixorastudio'], description },
     { '@type': 'WebSite', '@id': `${siteUrl}#website`, url: siteUrl.href, name: 'Fixora Studio', publisher: { '@id': `${siteUrl}#organization` }, inLanguage: lang },
     { '@type': 'WebPage', '@id': `${canonicalUrl}#webpage`, url: canonicalUrl.href, name: title, description, inLanguage: lang, isPartOf: { '@id': `${siteUrl}#website` }, about: { '@id': `${siteUrl}#organization` } },
   ],
@@ -72,6 +72,7 @@ const structuredData = {
       <link rel="alternate" hreflang="id" href={new URL("/id/", siteUrl)} />
       <link rel="alternate" hreflang="x-default" href={new URL("/", siteUrl)} />
     </>}
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
     <link rel="describedby" href="/llms.txt" type="text/plain" />

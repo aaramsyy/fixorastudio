@@ -40,17 +40,4 @@ export const caseStudies: CaseStudy[] = [
     tags: ['API Platform', 'Developer Tools', 'Data Infrastructure'],
     metrics: demoMetrics,
   },
-  // The remaining tabs intentionally reuse demo copy until real project data is ready.
-  ...[
-    { id: 'monveo', name: 'Monveo', mark: 'M' },
-    { id: 'pomolocked', name: 'Pomolocked', mark: 'P' },
-    { id: '19juta', name: '19juta', mark: '19' },
-    { id: 'semaur', name: 'Semaur', mark: 'S' },
-  ].map(project => ({
-    ...project,
-    title: 'From an idea to a product that works.',
-    description: 'A focused product build, from the first prototype to a reliable launch. We bring design, development, and infrastructure together to create software that feels simple and performs well.',
-    tags: ['Product Design', 'Development', 'Infrastructure'],
-    metrics: demoMetrics.map(metric => ({ ...metric })),
-  })),
 ];
